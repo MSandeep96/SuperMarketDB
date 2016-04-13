@@ -53,6 +53,9 @@ public class LoginActivity extends AppCompatActivity {
                     String isLoggedinBy=loggedIn.Ename+loggedIn.EID;
                     UtilsClass.setIsLoggedInBy(getApplicationContext(),isLoggedinBy);
                     UtilsClass.setIsLoggedIn(getApplicationContext(),true);
+                    Intent inte=new Intent(this,MainActivity.class);
+                    inte.putExtra("extra_data",isLoggedinBy);
+                    startActivity(inte);
                     finish();
                 }else{
                     Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show();

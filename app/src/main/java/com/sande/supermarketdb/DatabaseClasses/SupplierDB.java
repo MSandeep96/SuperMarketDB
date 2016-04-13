@@ -16,4 +16,16 @@ public class SupplierDB {
         Sname = sname;
         Scontact = scontact;
     }
+
+    public String getSID() {
+        return "Supplier ID:\t"+SID;
+    }
+
+    public String getSname() {
+        return "Supplier Name:\t"+Sname;
+    }
+
+    public String getScontact() {
+        return "Supplier Contact:\t"+Scontact;
+    }
 }

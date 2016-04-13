@@ -22,4 +22,28 @@ public class EmployeeDB {
         Salary = salary;
         JobType = jobType;
     }
+
+    public String getEID() {
+        return "EmployeeId:\t"+EID;
+    }
+
+    public String getEname() {
+        return "EmployeeName:\t"+Ename;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public String getSex() {
+        return "Sex:\t"+Sex;
+    }
+
+    public String getSalary() {
+        return "Salary:\t"+Salary;
+    }
+
+    public String getJobType() {
+        return "JobType:\t"+JobType;
+    }
 }

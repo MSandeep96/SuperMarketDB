@@ -34,14 +34,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHol
 
     @Override
     public void onBindViewHolder(StockViewHolder holder, int position) {
-        holder.ProductId.setText(String.valueOf(list.get(position).ProductId));
-        holder.Product_Name.setText(list.get(position).Product_Name);
-        holder.Product_Size.setText(list.get(position).Product_Size);
-        holder.Quantity.setText(String.valueOf(list.get(position).Quantity));
-        holder.Sale_Price.setText(String.valueOf(list.get(position).Sale_Price));
-        holder.Cost_Price.setText(String.valueOf(list.get(position).Cost_Price));
-        holder.Category.setText(list.get(position).Category);
-        holder.Supplied_by.setText(String.valueOf(list.get(position).Supplied_by));
+        holder.ProductId.setText(String.valueOf(list.get(position).getProductId()));
+        holder.Product_Name.setText(list.get(position).getProduct_Name());
+        holder.Product_Size.setText(list.get(position).getProduct_Size());
+        holder.Quantity.setText(String.valueOf(list.get(position).getQuantity()));
+        holder.Sale_Price.setText(String.valueOf(list.get(position).getSale_Price()));
+        holder.Cost_Price.setText(String.valueOf(list.get(position).getCost_Price()));
+        holder.Category.setText(list.get(position).getCategory());
+        holder.Supplied_by.setText(String.valueOf(list.get(position).getSupplied_by()));
     }
 
     @Override

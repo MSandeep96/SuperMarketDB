@@ -35,11 +35,11 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
     @Override
     public void onBindViewHolder(EmployeeViewHolder holder, int position) {
-        holder.eid.setText(String.valueOf(items.get(position).EID));
-        holder.ename.setText(items.get(position).Ename);
-        holder.jobType.setText(items.get(position).JobType);
-        holder.salary.setText(String.valueOf(items.get(position).Salary));
-        holder.sex.setText(items.get(position).Sex);
+        holder.eid.setText(String.valueOf(items.get(position).getEID()));
+        holder.ename.setText(items.get(position).getEname());
+        holder.jobType.setText(items.get(position).getJobType());
+        holder.salary.setText(String.valueOf(items.get(position).getSalary()));
+        holder.sex.setText(items.get(position).getSex());
     }
 
     @Override

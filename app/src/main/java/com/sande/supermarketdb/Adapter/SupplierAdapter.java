@@ -34,9 +34,9 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.Suppli
 
     @Override
     public void onBindViewHolder(SupplierViewHolder holder, int position) {
-        holder.SID.setText(String.valueOf(items.get(position).SID));
-        holder.Sname.setText(items.get(position).Sname);
-        holder.Scontact.setText(String.valueOf(items.get(position).Scontact));
+        holder.SID.setText(String.valueOf(items.get(position).getSID()));
+        holder.Sname.setText(items.get(position).getSname());
+        holder.Scontact.setText(String.valueOf(items.get(position).getScontact()));
     }
 
     @Override

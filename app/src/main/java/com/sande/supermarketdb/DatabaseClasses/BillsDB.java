@@ -12,6 +12,34 @@ public class BillsDB {
     public String bTime;
     public String modeofp;
 
+    public String getBID() {
+        return "Bill ID:\t"+BID;
+    }
+
+    public String getCID() {
+        return "Customer ID:\t"+CID;
+    }
+
+    public String getEID() {
+        return "Employee ID:\t"+EID;
+    }
+
+    public String getBill_amount() {
+        return "Bill amount:\t"+bill_amount;
+    }
+
+    public String getTotal_profit() {
+        return "Total Profit:\t"+total_profit;
+    }
+
+    public String getbTime() {
+        return "Bill time:\t"+bTime;
+    }
+
+    public String getModeofp() {
+        return "Mode of Payment:\t"+modeofp;
+    }
+
     public BillsDB(){}
 
     public BillsDB(int BID, int CID, int EID, int bill_amount, int total_profit, String bTime, String modeofp) {

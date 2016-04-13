@@ -20,11 +20,13 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.BillsViewHol
     Context mContext;
     ArrayList<BillsDB> items;
     LayoutInflater mInflater;
+
     public BillsAdapter(Context mContext, ArrayList<BillsDB> items){
         this.mContext=mContext;
         this.items=items;
         mInflater=LayoutInflater.from(mContext);
     }
+
     @Override
     public BillsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View mView=mInflater.inflate(R.layout.bills_item,parent,false);
@@ -33,13 +35,13 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.BillsViewHol
 
     @Override
     public void onBindViewHolder(BillsViewHolder holder, int position) {
-        holder.BID.setText(String.valueOf(items.get(position).BID));
-        holder.EID.setText(String.valueOf(items.get(position).EID));
-        holder.CID.setText(String.valueOf(items.get(position).CID));
-        holder.total_prof.setText(String.valueOf(items.get(position).total_profit));
-        holder.billAmount.setText(String.valueOf(items.get(position).bill_amount));
-        holder.btime.setText(String.valueOf(items.get(position).bTime));
-        holder.modeop.setText(items.get(position).modeofp);
+        holder.BID.setText(String.valueOf(items.get(position).getBID()));
+        holder.EID.setText(String.valueOf(items.get(position).getEID()));
+        holder.CID.setText(String.valueOf(items.get(position).getCID()));
+        holder.total_prof.setText(String.valueOf(items.get(position).getTotal_profit()));
+        holder.billAmount.setText(String.valueOf(items.get(position).getBill_amount()));
+        holder.btime.setText(String.valueOf(items.get(position).getbTime()));
+        holder.modeop.setText(items.get(position).getModeofp());
     }
 
     @Override

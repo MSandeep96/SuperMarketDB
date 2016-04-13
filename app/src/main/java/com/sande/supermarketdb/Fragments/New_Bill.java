@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
+import com.sande.supermarketdb.Activities.MainActivity;
 import com.sande.supermarketdb.Database.Database;
 import com.sande.supermarketdb.DatabaseClasses.CustomerDB;
 import com.sande.supermarketdb.R;
@@ -43,7 +44,11 @@ public class New_Bill extends Fragment {
         mContext=getContext();
         Database db=new Database(mContext);
         billId=db.getLatestBillId()+1;
-        eid= UtilsClass.getIsLoggedInBy(getContext());
+        if(MainActivity.empNmId==null){
+            eid= UtilsClass.getIsLoggedInBy(getContext());
+        }else{
+            eid=MainActivity.empNmId;
+        }
         customers=db.getAllCustomers();
         for(CustomerDB x:customers){
             cnames.add(x.Cname);

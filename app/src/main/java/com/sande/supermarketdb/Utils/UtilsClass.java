@@ -30,7 +30,7 @@ public class UtilsClass {
         SharedPreferences mShared=mContext.getSharedPreferences(ProjectCons.SHAREDPREFS,Context.MODE_PRIVATE);
         SharedPreferences.Editor mEditor=mShared.edit();
         mEditor.putString(ProjectCons.LOGGED_IN_BY,mIsLoggedinBy);
-        mEditor.apply();
+        mEditor.commit();
     }
 
 

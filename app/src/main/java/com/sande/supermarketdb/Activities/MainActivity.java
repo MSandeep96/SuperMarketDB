@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity
     private static final String SAVE_FRAG = "save_frag";
     private Fragment mFrag;
     private int OnFrag;
+    public static String empNmId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +45,14 @@ public class MainActivity extends AppCompatActivity
         });
         if(!UtilsClass.getIsLoggedIn(getApplicationContext())){
             Intent mInt=new Intent(this,LoginActivity.class);
-            startActivityForResult(mInt, ProjectCons.LOGIN_PAGE);
+            startActivity(mInt);
+            finish();
         }
         changeFrag(new New_Bill());
+        Intent inte=getIntent();
+        if(inte!=null){
+            empNmId=inte.getStringExtra("extra_data");
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -85,6 +91,10 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if(id==R.id.action_logout){
+            UtilsClass.setIsLoggedIn(this,false);
+            Intent inte=new Intent(this,LoginActivity.class);
+            startActivity(inte);
         }
 
         return super.onOptionsItemSelected(item);

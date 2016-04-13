@@ -37,11 +37,11 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
 
     @Override
     public void onBindViewHolder(CustomerView holder, int position) {
-        holder.cid.setText(String.valueOf(items.get(position).CID));
-        holder.cname.setText(items.get(position).Cname);
-        holder.contact.setText(String.valueOf(items.get(position).Contact));
-        holder.cemail.setText(items.get(position).Email);
-        holder.totalSpent.setText(String.valueOf(items.get(position).total_spent));
+        holder.cid.setText(String.valueOf(items.get(position).getCID()));
+        holder.cname.setText(items.get(position).getCname());
+        holder.contact.setText(String.valueOf(items.get(position).getContact()));
+        holder.cemail.setText(items.get(position).getEmail());
+        holder.totalSpent.setText(String.valueOf(items.get(position).getTotal_spent()));
     }
 
     @Override

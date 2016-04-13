@@ -21,4 +21,24 @@ public class CustomerDB {
         Email = email;
         this.total_spent = total_spent;
     }
+
+    public String getCID() {
+        return "Customer ID:\t"+CID;
+    }
+
+    public String getCname() {
+        return "Customer Name:\t"+Cname;
+    }
+
+    public String getContact() {
+        return "Customer Phone:\t"+Contact;
+    }
+
+    public String getEmail() {
+        return "EmailID:\t"+Email;
+    }
+
+    public String getTotal_spent() {
+        return "Total Spent:\t"+total_spent;
+    }
 }

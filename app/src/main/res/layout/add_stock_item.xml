@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Spinner
+        android:id="@+id/spinner_asi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_below="@id/spinner_asi"
+        android:id="@+id/avlquan_tv_asi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Available Quantity"/>
+    <TextView
+        android:layout_below="@+id/avlquan_tv_asi"
+        android:layout_alignBottom="@+id/quan_et_asi"
+        android:text="Quantity"
+        android:id="@+id/quan_tv_asi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_toRightOf="@+id/quan_tv_asi"
+        android:layout_below="@+id/avlquan_tv_asi"
+        android:id="@+id/quan_et_asi"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_below="@+id/quan_et_asi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/accept_btn_asi"
+        android:text="Add"/>
+
+</RelativeLayout>

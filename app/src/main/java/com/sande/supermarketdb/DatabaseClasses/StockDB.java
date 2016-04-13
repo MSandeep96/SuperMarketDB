@@ -25,4 +25,36 @@ public class StockDB {
         Category = category;
         Supplied_by = supplied_by;
     }
+
+    public String getProductId() {
+        return "ProductID:\t"+ProductId;
+    }
+
+    public String getProduct_Name() {
+        return "ProductName:\t"+Product_Name;
+    }
+
+    public String getProduct_Size() {
+        return "ProductSize:\t"+Product_Size;
+    }
+
+    public String getQuantity() {
+        return "Quantity:\t"+Quantity;
+    }
+
+    public String getSale_Price() {
+        return "Sale Price:\t"+Sale_Price;
+    }
+
+    public String getCost_Price() {
+        return "Cost Price:\t"+Cost_Price;
+    }
+
+    public String getCategory() {
+        return "Category:\t"+Category;
+    }
+
+    public String getSupplied_by() {
+        return "Supplied By:\t"+Supplied_by;
+    }
 }
