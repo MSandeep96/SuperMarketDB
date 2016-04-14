@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.sande.supermarketdb.DatabaseClasses.BillsDB;
 import com.sande.supermarketdb.DatabaseClasses.CustomerDB;
@@ -271,6 +272,12 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
         return transacts;
     }
 
+    public void insertIntoStock(StockDB stock_item){
+        String sql="INSERT INTO "+TABLE_STOCK+" VALUES (?,?,?,?,?,?,?)";
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.execSQL(sql,new Object[stock_item.ProductId,stock_item.Product_Name,stock_item.Quantity,stock_item.Sale_Price,stock_item.Cost_Price,stock_item.Category]);
+    }
+
     public void insertIntoCustomer(CustomerDB customer_item){
         String sql="INSERT INTO "+TABLE_CUSTOMER+" VALUES (?,?,?,?)";
         SQLiteDatabase db=this.getWritableDatabase();
@@ -300,4 +307,12 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
         }
     }
 
+    public void executeQuery(String query,Context mContext) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        try{
+            db.execSQL(query);
+        }catch (Exception e){
+            Toast.makeText(mContext, "Invalid Query", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
