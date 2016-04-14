@@ -36,7 +36,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHol
     public void onBindViewHolder(StockViewHolder holder, int position) {
         holder.ProductId.setText(String.valueOf(list.get(position).getProductId()));
         holder.Product_Name.setText(list.get(position).getProduct_Name());
-        holder.Product_Size.setText(list.get(position).getProduct_Size());
         holder.Quantity.setText(String.valueOf(list.get(position).getQuantity()));
         holder.Sale_Price.setText(String.valueOf(list.get(position).getSale_Price()));
         holder.Cost_Price.setText(String.valueOf(list.get(position).getCost_Price()));
@@ -52,7 +51,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHol
     public static class StockViewHolder extends RecyclerView.ViewHolder{
         TextView ProductId;
         TextView Product_Name;
-        TextView Product_Size;
         TextView Quantity;
         TextView Sale_Price;
         TextView Cost_Price;
@@ -62,7 +60,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHol
             super(itemView);
             ProductId=(TextView)itemView.findViewById(R.id.stock_prodid_tv);
             Product_Name=(TextView)itemView.findViewById(R.id.stock_prodna_tv);
-            Product_Size=(TextView)itemView.findViewById(R.id.stock_prosiz_tv);
             Quantity=(TextView)itemView.findViewById(R.id.stock_quan_tv);
             Sale_Price=(TextView)itemView.findViewById(R.id.stock_sale_tv);
             Cost_Price=(TextView)itemView.findViewById(R.id.stock_cost_tv);

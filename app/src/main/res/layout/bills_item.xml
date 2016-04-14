@@ -6,45 +6,108 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="16dp">
 
         <TextView
+            android:layout_alignBottom="@+id/bills_bid_tv"
+            android:text="Bill ID:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/bills_bid_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignBottom="@+id/bills_cid_tv"
+            android:text="Customer ID:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/bills_bid_tv"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/bills_cid_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignBottom="@+id/bills_eid_tv"
+            android:text="Employee ID:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/bills_cid_tv"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/bills_eid_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignBottom="@+id/bills_billam_tv"
+            android:text="Bill Amount:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/bills_eid_tv"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/bills_billam_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignBottom="@+id/bills_totalpf_tv"
+            android:text="Bill's Profit:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/bills_billam_tv"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/bills_totalpf_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignBottom="@+id/bills_time_tv"
+            android:text="Bill Time:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/bills_totalpf_tv"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/bills_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignBottom="@+id/bills_modep_tv"
+            android:text="Payed by:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/bills_time_tv"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/bills_modep_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

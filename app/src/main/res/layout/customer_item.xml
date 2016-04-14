@@ -6,36 +6,66 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
+            android:layout_alignBottom="@+id/cust_cid_tv"
+            android:text="Customer ID:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/cust_cid_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignBottom="@+id/cust_cname_tv"
+            android:text="Customer Name:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/cust_cid_tv"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/cust_cname_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignBottom="@+id/cust_contact_tv"
+            android:text="Customer Phone:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/cust_cname_tv"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/cust_contact_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/cust_email_tv"
+            android:layout_alignBottom="@+id/cust_email_tv"
+            android:text="Email ID:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/cust_total_tv"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/cust_contact_tv"
+            android:id="@+id/cust_email_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -6,7 +6,6 @@ package com.sande.supermarketdb.DatabaseClasses;
 public class StockDB {
     public int ProductId;
     public String Product_Name;
-    public String Product_Size;
     public int Quantity;
     public double Sale_Price;
     public double Cost_Price;
@@ -15,10 +14,9 @@ public class StockDB {
 
     public StockDB(){};
 
-    public StockDB(int productId, String product_Name, String product_Size, int quantity, double sale_Price, double cost_Price, String category, int supplied_by) {
+    public StockDB(int productId, String product_Name,int quantity, double sale_Price, double cost_Price, String category, int supplied_by) {
         ProductId = productId;
         Product_Name = product_Name;
-        Product_Size = product_Size;
         Quantity = quantity;
         Sale_Price = sale_Price;
         Cost_Price = cost_Price;
@@ -27,34 +25,30 @@ public class StockDB {
     }
 
     public String getProductId() {
-        return "ProductID:\t"+ProductId;
+        return String.valueOf(ProductId);
     }
 
     public String getProduct_Name() {
-        return "ProductName:\t"+Product_Name;
-    }
-
-    public String getProduct_Size() {
-        return "ProductSize:\t"+Product_Size;
+        return Product_Name;
     }
 
     public String getQuantity() {
-        return "Quantity:\t"+Quantity;
+        return String.valueOf(Quantity);
     }
 
     public String getSale_Price() {
-        return "Sale Price:\t"+Sale_Price;
+        return String.valueOf(Sale_Price);
     }
 
     public String getCost_Price() {
-        return "Cost Price:\t"+Cost_Price;
+        return String.valueOf(Cost_Price);
     }
 
     public String getCategory() {
-        return "Category:\t"+Category;
+        return Category;
     }
 
     public String getSupplied_by() {
-        return "Supplied By:\t"+Supplied_by;
+        return String.valueOf(Supplied_by);
     }
 }

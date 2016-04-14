@@ -6,6 +6,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+    <item android:id="@+id/manager_mode"
+        android:orderInCategory="999"
+        android:title="Manager"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/action_logout"
         android:orderInCategory="200"

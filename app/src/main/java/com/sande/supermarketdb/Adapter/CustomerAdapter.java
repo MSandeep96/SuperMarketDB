@@ -41,7 +41,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
         holder.cname.setText(items.get(position).getCname());
         holder.contact.setText(String.valueOf(items.get(position).getContact()));
         holder.cemail.setText(items.get(position).getEmail());
-        holder.totalSpent.setText(String.valueOf(items.get(position).getTotal_spent()));
     }
 
     @Override
@@ -54,14 +53,12 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
         TextView cname;
         TextView contact;
         TextView cemail;
-        TextView totalSpent;
         public CustomerView(View itemView) {
             super(itemView);
             cid=(TextView)itemView.findViewById(R.id.cust_cid_tv);
             cname=(TextView)itemView.findViewById(R.id.cust_cname_tv);
             contact=(TextView)itemView.findViewById(R.id.cust_contact_tv);
             cemail=(TextView)itemView.findViewById(R.id.cust_email_tv);
-            totalSpent=(TextView)itemView.findViewById(R.id.cust_total_tv);
         }
     }
 }

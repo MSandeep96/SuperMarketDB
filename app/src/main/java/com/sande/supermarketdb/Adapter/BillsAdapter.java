@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.sande.supermarketdb.CallBack;
 import com.sande.supermarketdb.DatabaseClasses.BillsDB;
 import com.sande.supermarketdb.R;
 
@@ -34,7 +35,7 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.BillsViewHol
     }
 
     @Override
-    public void onBindViewHolder(BillsViewHolder holder, int position) {
+    public void onBindViewHolder(BillsViewHolder holder, final int position) {
         holder.BID.setText(String.valueOf(items.get(position).getBID()));
         holder.EID.setText(String.valueOf(items.get(position).getEID()));
         holder.CID.setText(String.valueOf(items.get(position).getCID()));
@@ -42,6 +43,12 @@ public class BillsAdapter extends RecyclerView.Adapter<BillsAdapter.BillsViewHol
         holder.billAmount.setText(String.valueOf(items.get(position).getBill_amount()));
         holder.btime.setText(String.valueOf(items.get(position).getbTime()));
         holder.modeop.setText(items.get(position).getModeofp());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((CallBack)mContext).callTransactivity(items.get(position).BID);
+            }
+        });
     }
 
     @Override

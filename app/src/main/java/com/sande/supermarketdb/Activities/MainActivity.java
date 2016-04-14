@@ -15,13 +15,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.sande.supermarketdb.CallBack;
+import com.sande.supermarketdb.DialogFrag.AddCustomerItem;
+import com.sande.supermarketdb.DialogFrag.AddStockItem;
 import com.sande.supermarketdb.Fragments.*;
+import com.sande.supermarketdb.Pojo.New_bill_item;
 import com.sande.supermarketdb.R;
 import com.sande.supermarketdb.Utils.ProjectCons;
 import com.sande.supermarketdb.Utils.UtilsClass;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,CallBack{
 
     private static final String SAVE_FRAG = "save_frag";
     private Fragment mFrag;
@@ -36,37 +40,56 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Fragment frag=getSupportFragmentManager().findFragmentByTag("visible_frag");
+                if(frag instanceof New_Bill)
+                {
+                    AddStockItem addStIt = new AddStockItem();
+                    addStIt.show(getSupportFragmentManager(), "Add_Item");
+                }else if(frag instanceof Customer){
+                    AddCustomerItem addCuIt=new AddCustomerItem();
+                    addCuIt.show(getSupportFragmentManager(),"Add_Customer");
+                }else{
+                    Snackbar.make(view,"Call manager to add one",Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
         if(!UtilsClass.getIsLoggedIn(getApplicationContext())){
             Intent mInt=new Intent(this,LoginActivity.class);
             startActivity(mInt);
             finish();
+            return;
         }
-        changeFrag(new New_Bill());
+        if(UtilsClass.getIsLoggedInBy(this).equals("Nobody")){
+
+        }else{
+            changeFrag(new New_Bill());
+        }
         Intent inte=getIntent();
         if(inte!=null){
             empNmId=inte.getStringExtra("extra_data");
+            changeFrag(new New_Bill());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        assert drawer != null;
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        assert drawer != null;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -100,6 +123,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -121,6 +145,7 @@ public class MainActivity extends AppCompatActivity
         }
         changeFrag(mFrag);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -129,4 +154,28 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fl_cm,frag,"visible_frag").commit();
     }
 
+    @Override
+    public void onAddItem(New_bill_item nbi) {
+        mFrag=getSupportFragmentManager().findFragmentByTag("visible_frag");
+        if(mFrag instanceof New_Bill){
+            ((New_Bill)mFrag).gotItem(nbi);
+        }
+    }
+
+    @Override
+    public void resetFrag() {
+        changeFrag(new New_Bill());
+    }
+
+    @Override
+    public void resetCust() {
+        changeFrag(new Customer());
+    }
+
+    @Override
+    public void callTransactivity(int billid) {
+        Intent inte=new Intent(this,TransactsActivity.class);
+        inte.putExtra("billid",billid);
+        startActivityForResult(inte,124);
+    }
 }

@@ -1,32 +1,96 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.sande.supermarketdb.Fragments.New_Bill">
-    <LinearLayout
-        android:background="@color/colorAccent"
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textColor="@color/colorWhite"
-            android:id="@+id/billId_tv_fnb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:textColor="@color/colorWhite"
-            android:id="@+id/empId_tv_fnb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    android:orientation="vertical">
 
-    <AutoCompleteTextView
-        android:id="@+id/actv_fnb"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:completionThreshold="5"
-        />
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp">
 
+        <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            tools:context="com.sande.supermarketdb.Fragments.New_Bill">
+
+            <TextView
+                android:id="@+id/billId_tv_fnb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:id="@+id/empId_tv_fnb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:layout_below="@+id/billId_tv_fnb"
+                android:layout_alignParentRight="true" />
+
+            <Spinner
+                android:layout_below="@+id/empId_tv_fnb"
+                android:id="@+id/customer_spinner_fnb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Base.Widget.AppCompat.Spinner"
+                android:layout_marginBottom="10dp"
+                android:minHeight="48dp"/>
+
+            <Spinner
+                android:layout_below="@+id/customer_spinner_fnb"
+                android:id="@+id/modeop_spinner_fnb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bill ID:"
+                android:textSize="19sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Employee ID:"
+                android:textSize="19sp"
+                android:layout_alignBottom="@+id/empId_tv_fnb"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        >
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/billTotal_tv_fnb"
+                android:text="Bill Amount"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_fnb"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
 </LinearLayout>

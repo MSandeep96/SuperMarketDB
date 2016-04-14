@@ -30,7 +30,25 @@
         <activity
             android:name=".Activities.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.TransactsActivity"
+            android:label="@string/title_activity_transacts"
+            android:parentActivityName=".Activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sande.supermarketdb.Activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Activities.ManagerActivity"
+            android:label="@string/title_activity_manager"
+            android:parentActivityName=".Activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sande.supermarketdb.Activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

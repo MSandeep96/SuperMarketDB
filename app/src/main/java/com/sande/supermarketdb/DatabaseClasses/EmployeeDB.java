@@ -24,11 +24,11 @@ public class EmployeeDB {
     }
 
     public String getEID() {
-        return "EmployeeId:\t"+EID;
+        return String.valueOf(EID);
     }
 
     public String getEname() {
-        return "EmployeeName:\t"+Ename;
+        return Ename;
     }
 
     public String getPassword() {
@@ -36,14 +36,14 @@ public class EmployeeDB {
     }
 
     public String getSex() {
-        return "Sex:\t"+Sex;
+        return Sex;
     }
 
     public String getSalary() {
-        return "Salary:\t"+Salary;
+        return String.valueOf(Salary);
     }
 
     public String getJobType() {
-        return "JobType:\t"+JobType;
+        return JobType;
     }
 }

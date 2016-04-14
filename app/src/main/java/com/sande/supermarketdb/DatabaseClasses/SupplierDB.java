@@ -18,14 +18,14 @@ public class SupplierDB {
     }
 
     public String getSID() {
-        return "Supplier ID:\t"+SID;
+        return String.valueOf(SID);
     }
 
     public String getSname() {
-        return "Supplier Name:\t"+Sname;
+        return Sname;
     }
 
     public String getScontact() {
-        return "Supplier Contact:\t"+Scontact;
+        return String.valueOf(Scontact);
     }
 }

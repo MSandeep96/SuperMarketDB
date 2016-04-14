@@ -13,36 +13,36 @@ public class BillsDB {
     public String modeofp;
 
     public String getBID() {
-        return "Bill ID:\t"+BID;
+        return String.valueOf(BID);
     }
 
     public String getCID() {
-        return "Customer ID:\t"+CID;
+        return String.valueOf(CID);
     }
 
     public String getEID() {
-        return "Employee ID:\t"+EID;
+        return String.valueOf(EID);
     }
 
     public String getBill_amount() {
-        return "Bill amount:\t"+bill_amount;
+        return String.valueOf(bill_amount);
     }
 
     public String getTotal_profit() {
-        return "Total Profit:\t"+total_profit;
+        return String.valueOf(total_profit);
     }
 
     public String getbTime() {
-        return "Bill time:\t"+bTime;
+        return bTime;
     }
 
     public String getModeofp() {
-        return "Mode of Payment:\t"+modeofp;
+        return modeofp;
     }
 
     public BillsDB(){}
 
-    public BillsDB(int BID, int CID, int EID, int bill_amount, int total_profit, String bTime, String modeofp) {
+    public BillsDB(int BID, int CID, int EID, double bill_amount, double total_profit, String bTime, String modeofp) {
         this.BID = BID;
         this.CID = CID;
         this.EID = EID;

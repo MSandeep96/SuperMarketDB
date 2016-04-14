@@ -8,37 +8,32 @@ public class CustomerDB {
     public String Cname;
     public long Contact;
     public String Email;
-    public double total_spent;
 
     public CustomerDB(){
 
     }
 
-    public CustomerDB(int CID, String cname, long contact, String email, double total_spent) {
+    public CustomerDB(int CID, String cname, String contact, String email) {
         this.CID = CID;
         Cname = cname;
-        Contact = contact;
+        Contact = Long.parseLong(contact);
         Email = email;
-        this.total_spent = total_spent;
     }
 
     public String getCID() {
-        return "Customer ID:\t"+CID;
+        return String.valueOf(CID);
     }
 
     public String getCname() {
-        return "Customer Name:\t"+Cname;
+        return Cname;
     }
 
     public String getContact() {
-        return "Customer Phone:\t"+Contact;
+        return String.valueOf(Contact);
     }
 
     public String getEmail() {
-        return "EmailID:\t"+Email;
+        return Email;
     }
 
-    public String getTotal_spent() {
-        return "Total Spent:\t"+total_spent;
-    }
 }

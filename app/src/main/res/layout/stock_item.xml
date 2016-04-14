@@ -6,50 +6,113 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="16dp"
         android:orientation="vertical">
+        <TextView
+            android:layout_alignBottom="@+id/stock_prodid_tv"
+            android:text="ProductID:"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/stock_prodid_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@+id/stock_prodna_tv"
+            android:text="ProductName:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/stock_prodid_tv"
             android:id="@+id/stock_prodna_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/stock_prosiz_tv"
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@+id/stock_quan_tv"
+            android:text="Quantity:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/stock_prodna_tv"
             android:id="@+id/stock_quan_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@+id/stock_sale_tv"
+            android:text="Sale Price:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/stock_quan_tv"
             android:id="@+id/stock_sale_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@+id/stock_cost_tv"
+            android:text="Cost Price:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/stock_sale_tv"
             android:id="@+id/stock_cost_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@+id/stock_cate_tv"
+            android:text="Category:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/stock_cost_tv"
             android:id="@+id/stock_cate_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@+id/stock_suppl_tv"
+            android:text="Supplied By:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/stock_cate_tv"
             android:id="@+id/stock_suppl_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

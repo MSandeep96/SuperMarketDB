@@ -10,6 +10,8 @@ import com.sande.supermarketdb.DatabaseClasses.CustomerDB;
 import com.sande.supermarketdb.DatabaseClasses.EmployeeDB;
 import com.sande.supermarketdb.DatabaseClasses.StockDB;
 import com.sande.supermarketdb.DatabaseClasses.SupplierDB;
+import com.sande.supermarketdb.DatabaseClasses.TransactDB;
+import com.sande.supermarketdb.Pojo.New_bill_item;
 
 import java.util.ArrayList;
 
@@ -28,7 +30,6 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
     private static final String CREATE_STOCK="create table stock(" +
             "ProductId integer," +
             "Product_Name text not null," +
-            "Product_Size text, " +
             "Quantity integer," +
             "Sale_Price REAL not null," +
             "Cost_Price real not null," +
@@ -36,8 +37,6 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
             "Supplied_by integer not null," +
             "primary key (ProductId)," +
             "foreign key (Supplied_by) references supplier(sid) on delete cascade on update cascade,"+
-            "unique (Product_Name,Product_Size)," +
-            "check (Product_Size in ('Small','Medium','Large','XLarge'))," +
             "check (Category in ('Household','Edible','Electronics'))" +
             ")";
 
@@ -47,7 +46,8 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
             "Password text not null," +
             "Sex text not null," +
             "Salary REAL not null," +
-            "JobType text not null" +
+            "JobType text not null," +
+            "check (JobType in ('FullTime','PartTime'))"+
             ")";
 
     private static final String  CREATE_CUSTOMER="create table customer(" +
@@ -55,8 +55,6 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
             "Cname text not null," +
             "Contact number," +
             "Email text," +
-            "total_spent REAL," +
-            "check (total_spent>0)," +
             "check (contact>7000000000)" +
             ")";
 
@@ -72,7 +70,7 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
             "foreign key (EID) references employee(EID) on delete cascade on update cascade," +
             "check (billAmount>0)," +
             "check (total_Profit>0)," +
-            "check (modeop in ('Cash','Card'))" +
+            "check (modeop in ('Cash','Credit','Debit','Voucher'))" +
             ")";
 
     private static final String CREATE_TRANSACTS ="create table transacts(" +
@@ -151,7 +149,6 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
                 customerDB.Cname=cursor.getString(1);
                 customerDB.Contact=Long.parseLong(cursor.getString(2));
                 customerDB.Email=cursor.getString(3);
-                customerDB.total_spent=Double.parseDouble(cursor.getString(4));
                 allCustomers.add(customerDB);
             }while (cursor.moveToNext());
         }
@@ -190,12 +187,11 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
                 StockDB stockDB = new StockDB();
                 stockDB.ProductId = Integer.parseInt(cursor.getString(0));
                 stockDB.Product_Name = cursor.getString(1);
-                stockDB.Product_Size = cursor.getString(2);
-                stockDB.Quantity = Integer.parseInt(cursor.getString(3));
-                stockDB.Sale_Price = Double.parseDouble(cursor.getString(4));
-                stockDB.Cost_Price = Double.parseDouble(cursor.getString(5));
-                stockDB.Category = cursor.getString(6);
-                stockDB.Supplied_by = Integer.parseInt(cursor.getString(7));
+                stockDB.Quantity = Integer.parseInt(cursor.getString(2));
+                stockDB.Sale_Price = Double.parseDouble(cursor.getString(3));
+                stockDB.Cost_Price = Double.parseDouble(cursor.getString(4));
+                stockDB.Category = cursor.getString(5);
+                stockDB.Supplied_by = Integer.parseInt(cursor.getString(6));
                 allStock.add(stockDB);
             } while (cursor.moveToNext());
         }
@@ -233,6 +229,18 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
         return billId;
     }
 
+    public int getLatestCustomerId(){
+        int customerId=0;
+        String query="SELECT * FROM "+TABLE_CUSTOMER+" ORDER BY "+CUSTOMER_CID+" DESC";
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            customerId=Integer.parseInt(cursor.getString(0));
+        }
+        cursor.close();
+        return customerId;
+    }
+
     public ArrayList<String> getAllCustomerIds(){
         ArrayList<String> customerIds=new ArrayList<>();
         String query="SELECT "+CUSTOMER_CID+" FROM "+TABLE_CUSTOMER;
@@ -245,6 +253,51 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
         }
         cursor.close();
         return customerIds;
+    }
+
+    public ArrayList<TransactDB> getTheseTransacts(int BillId){
+        ArrayList<TransactDB> transacts=new ArrayList<>();
+        String query="SELECT * FROM "+TABLE_TRANSACTS+" WHERE "+TRANSACTS_BID+" = "+String.valueOf(BillId);
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            do{
+                int pid=Integer.parseInt(cursor.getString(1));
+                int pquan=Integer.parseInt(cursor.getString(2));
+                transacts.add(new TransactDB(BillId,pid,pquan));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return transacts;
+    }
+
+    public void insertIntoCustomer(CustomerDB customer_item){
+        String sql="INSERT INTO "+TABLE_CUSTOMER+" VALUES (?,?,?,?)";
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.execSQL(sql,new Object[]{customer_item.CID,customer_item.Cname,customer_item.Contact,customer_item.Email});
+    }
+
+    public void insertIntoBills(BillsDB bill_item){
+        String sql="INSERT INTO "+TABLE_BILLS+" VALUES (?,?,?,?,?,?,?)";
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.execSQL(sql,new Object[]{bill_item.BID,bill_item.CID,bill_item.EID,bill_item.bill_amount,bill_item.total_profit,bill_item.bTime,bill_item.modeofp});
+    }
+
+    public void insertIntoTranscats(int billId,ArrayList<New_bill_item> nbis){
+        String sql="INSERT INTO "+TABLE_TRANSACTS+" VALUES (?,?,?)";
+        SQLiteDatabase db=this.getWritableDatabase();
+        for(New_bill_item x:nbis){
+            db.execSQL(sql,new Object[]{billId,x.prod_id,x.bought_quantity});
+        }
+    }
+
+    public void updateStock(ArrayList<New_bill_item> nbis){
+        SQLiteDatabase db=this.getWritableDatabase();
+        for(New_bill_item x:nbis){
+            String sql="UPDATE "+TABLE_STOCK+" SET "+STOCK_QUANTITY+" = "+String.valueOf(x.left_quantity)+" WHERE "+STOCK_PRODUCTID+
+                    " = "+String.valueOf(x.prod_id);
+            db.execSQL(sql);
+        }
     }
 
 }

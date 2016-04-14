@@ -34,7 +34,6 @@ public interface DatabaseInterface  {
     String CUSTOMER_CNAME="CNAME";
     String CUSTOMER_CONTACT="CONTACT";
     String CUSTOMER_EMAIL="EMAIL";
-    String CUSTOMER_TOTAL_SPENT="TOTAL_SPENT";
     String BILL_BID="BID";
     String BILL_EID="EID";
     String BILL_CID="CID";
