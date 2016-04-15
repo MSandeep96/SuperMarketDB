@@ -50,6 +50,7 @@ public class GoToManagerMode extends DialogFragment {
                     }else{
                         if(mappings.get(id).equals(mPass.getText().toString())){
                             ((CallBack)mContext).callManangerMode();
+                            dismiss();
                         }else{
                             Toast.makeText(mContext, "Invalid Password", Toast.LENGTH_SHORT).show();
                         }

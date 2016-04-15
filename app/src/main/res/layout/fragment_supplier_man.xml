@@ -14,13 +14,13 @@
         android:id="@+id/supplier_id_fsuppm" />
 
     <EditText
-        android:hint="Employee Name"
+        android:hint="Supplier Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/supplier_name_et_fsuppm" />
 
     <EditText
-        android:hint="Employee Contact"
+        android:hint="Supplier Contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/supplier_contact_et_fsuppm"

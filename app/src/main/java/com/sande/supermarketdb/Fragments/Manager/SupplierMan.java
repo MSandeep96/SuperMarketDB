@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.AndroidException;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,8 +62,9 @@ public class SupplierMan extends Fragment {
                 SupplierDB mSupp=new SupplierDB(suppID,mEmpNa,mECont);
                 try {
                     mDB.insertIntoSupplier(mSupp);
+                    Toast.makeText(mContext,"Successfully Added",Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
-                    Toast.makeText(mContext, "Invalid Entries", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
                 ((ManagerCallBack)mContext).resetFrag(new SupplierMan());
             }

@@ -26,9 +26,19 @@ public class Employee extends Fragment {
 
     private Context mContext;
     private ArrayList<EmployeeDB> items;
+    private static final String KEY_ISINMANAGER = "IsInManager";
+    private boolean isInMana;
 
     public Employee() {
         // Required empty public constructor
+    }
+
+    public static Employee newInstance(Boolean isInManager){
+        Employee mEm=new Employee();
+        Bundle mBun=new Bundle();
+        mBun.putBoolean(KEY_ISINMANAGER,isInManager);
+        mEm.setArguments(mBun);
+        return mEm;
     }
 
     @Override
@@ -36,7 +46,14 @@ public class Employee extends Fragment {
         super.onCreate(savedInstanceState);
         mContext=getContext();
         Database mDB=new Database(mContext);
-        items=mDB.getAllEmployee();
+        if(getArguments()!=null) {
+            isInMana = getArguments().getBoolean(KEY_ISINMANAGER, false);
+        }
+        if(isInMana) {
+            items = mDB.getAllManagers();
+        }else {
+            items=mDB.getAllEmployee();
+        }
     }
 
     @Override

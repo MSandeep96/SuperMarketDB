@@ -27,6 +27,10 @@
             android:id="@+id/nav_bills"
             android:icon="@drawable/ic_menu_send"
             android:title="Bills" />
+        <item
+            android:id="@+id/nav_managers"
+            android:icon="@drawable/ic_expand_more_black_18dp"
+            android:title="Managers"/>
     </group>
 
 </menu>

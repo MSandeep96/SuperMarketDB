@@ -47,6 +47,6 @@ public class ManagerActivity extends AppCompatActivity implements ManagerCallBac
 
     @Override
     public void resetFrag(Fragment fragment) {
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_contentManager,fragment,"visible_manager").commit();
     }
 }

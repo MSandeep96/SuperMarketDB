@@ -43,9 +43,12 @@ public class QueryMan extends Fragment {
                     Toast.makeText(mContext, "Can't be empty", Toast.LENGTH_SHORT).show();
                 }else{
                     Database mDb=new Database(mContext);
-                    mDb.executeQuery(mQuery.getText().toString(),mContext);
-                    mQuery.setText("");
-                    Toast.makeText(mContext, "Successful", Toast.LENGTH_SHORT).show();
+                    try {
+                        mDb.executeQuery(mQuery.getText().toString());
+                        Toast.makeText(mContext, "Successful", Toast.LENGTH_SHORT).show();
+                    }catch (Exception e){
+                        Toast.makeText(mContext, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
                 ((ManagerCallBack)mContext).resetFrag(new QueryMan());
             }

@@ -70,8 +70,9 @@ public class StockMan extends Fragment {
                 Database mDB=new Database(mContext);
                 try {
                     mDB.insertIntoStock(mStockItem);
+                    Toast.makeText(mContext, "Successful", Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
-                    Toast.makeText(mContext,"Invalid entries",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext,e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
                 ((ManagerCallBack)mContext).resetFrag(new StockMan());
             }

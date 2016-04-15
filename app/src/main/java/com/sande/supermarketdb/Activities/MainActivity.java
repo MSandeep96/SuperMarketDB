@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     private Fragment mFrag;
     private int OnFrag;
     public static String empNmId;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,16 +137,25 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_new_bill) {
             mFrag=new New_Bill();
+            fab.show();
         } else if (id == R.id.nav_stock) {
             mFrag=new Stock();
+            fab.hide();
         } else if (id == R.id.nav_employee) {
             mFrag=new Employee();
+            fab.hide();
         } else if (id == R.id.nav_customer) {
             mFrag=new Customer();
+            fab.show();
         } else if (id == R.id.nav_supplier) {
             mFrag=new Supplier();
+            fab.hide();
         } else if (id == R.id.nav_bills) {
             mFrag = new Bills();
+            fab.hide();
+        }else if(id==R.id.nav_managers){
+            mFrag=Employee.newInstance(true);
+            fab.hide();
         }
         changeFrag(mFrag);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

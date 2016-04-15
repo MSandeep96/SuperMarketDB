@@ -9,8 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +31,7 @@ public class EmployeeMan extends Fragment {
     private Context mContext;
     private int EmpId;
     private Database mDB;
+    private int selected;
 
     public EmployeeMan() {
         // Required empty public constructor
@@ -52,23 +56,37 @@ public class EmployeeMan extends Fragment {
         final EditText sex = (EditText) mView.findViewById(R.id.sex_et_fem);
         final EditText pass = (EditText) mView.findViewById(R.id.pass_et_fem);
         final EditText salary = (EditText) mView.findViewById(R.id.salary_et_fem);
-        final EditText job_type = (EditText) mView.findViewById(R.id.job_type_et_fem);
+        final Spinner job_type = (Spinner) mView.findViewById(R.id.job_type_et_fem);
+        final String[] items={"FullTime","PartTime"};
+        ArrayAdapter<String> job=new ArrayAdapter<String>(mContext,android.R.layout.simple_spinner_item,items);
+        job_type.setAdapter(job);
+        job.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        job_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selected=position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         Button sumbit = (Button) mView.findViewById(R.id.submit_btn_fem);
         sumbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emidnew="Employee ID:    "+EmpId;
-                empid.setText(EmpId);
                 String empname = empName.getText().toString();
                 String sx = sex.getText().toString();
                 double salry = Double.parseDouble(salary.getText().toString());
-                String job_typ = job_type.getText().toString();
+                String job_typ = items[selected];
                 String pas = pass.getText().toString();
                 EmployeeDB empitem = new EmployeeDB(EmpId, empname, pas, sx, salry, job_typ);
                 try {
                     mDB.insertIntoEmployee(empitem);
+                    Toast.makeText(mContext, "Successful", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    Toast.makeText(mContext, "Invalid entries", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 ((ManagerCallBack)mContext).resetFrag(new EmployeeMan());
             }
