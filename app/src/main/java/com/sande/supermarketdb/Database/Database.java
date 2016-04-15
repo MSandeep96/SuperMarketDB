@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v4.util.ArrayMap;
 import android.widget.Toast;
 
 import com.sande.supermarketdb.DatabaseClasses.BillsDB;
@@ -275,7 +276,7 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
     public void insertIntoStock(StockDB stock_item){
         String sql="INSERT INTO "+TABLE_STOCK+" VALUES (?,?,?,?,?,?,?)";
         SQLiteDatabase db=this.getWritableDatabase();
-        db.execSQL(sql,new Object[stock_item.ProductId,stock_item.Product_Name,stock_item.Quantity,stock_item.Sale_Price,stock_item.Cost_Price,stock_item.Category]);
+        db.execSQL(sql,new Object[]{stock_item.ProductId,stock_item.Product_Name,stock_item.Quantity,stock_item.Sale_Price,stock_item.Cost_Price,stock_item.Category});
     }
 
     public void insertIntoCustomer(CustomerDB customer_item){
@@ -314,5 +315,69 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface{
         }catch (Exception e){
             Toast.makeText(mContext, "Invalid Query", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public int getLatestEmployee() {
+        int employeeID=0;
+        String query="SELECT * FROM "+TABLE_EMPLOYEE+" ORDER BY "+EMPLOYEE_EID+" DESC";
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            employeeID=Integer.parseInt(cursor.getString(0));
+        }
+        cursor.close();
+        return employeeID;
+    }
+
+    public void insertIntoEmployee(EmployeeDB empitem) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        String sql="INSERT INTO "+TABLE_EMPLOYEE+" VALUES (?,?,?,?,?,?)";
+        db.execSQL(sql,new Object[]{empitem.EID,empitem.Ename,empitem.Password,empitem.Sex,empitem.Salary,empitem.JobType});
+    }
+
+    public int getLatestSupplierID() {
+        int supplierID=0;
+        String query="SELECT * FROM "+TABLE_SUPPLIER+" ORDER BY "+SUPPLIER_SID+" DESC";
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            supplierID=Integer.parseInt(cursor.getString(0));
+        }
+        cursor.close();
+        return supplierID;
+    }
+
+    public void insertIntoSupplier(SupplierDB mSupp) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        String sql="INSERT INTO "+TABLE_SUPPLIER+" VALUES (?,?,?)";
+        db.execSQL(sql,new Object[]{mSupp.SID,mSupp.Sname,mSupp.Scontact});
+    }
+
+    public ArrayMap<Integer,String> getManagerAccounts(){
+        ArrayMap<Integer,String> maps=new ArrayMap<>();
+        SQLiteDatabase db=this.getWritableDatabase();
+        String sql="SELECT * FROM "+TABLE_MANAGER;
+        Cursor cursor=db.rawQuery(sql,null);
+        if(cursor.moveToFirst()){
+            do {
+                int id = Integer.parseInt(cursor.getString(0));
+                String pass = cursor.getString(1);
+                maps.put(id, pass);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return maps;
+    }
+
+    public int getLatestProductID() {
+        int supplierID=0;
+        String query="SELECT * FROM "+TABLE_STOCK+" ORDER BY "+STOCK_PRODUCTID+" DESC";
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            supplierID=Integer.parseInt(cursor.getString(0));
+        }
+        cursor.close();
+        return supplierID;
     }
 }

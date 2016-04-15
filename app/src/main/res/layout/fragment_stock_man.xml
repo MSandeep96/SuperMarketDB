@@ -5,11 +5,11 @@
     android:orientation="vertical"
     tools:context="com.sande.supermarketdb.Fragments.Manager.StockMan">
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:hint="ProductId"
+        android:textSize="20sp"
+        android:hint="ProductId:"
         android:id="@+id/prodid_fsm"
         android:layout_marginBottom="10dp"/>
     <EditText
@@ -37,7 +37,7 @@
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:id="@+id/cost_price_fsm" />
     <EditText
         android:hint="Category"

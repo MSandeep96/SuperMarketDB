@@ -13,4 +13,6 @@ public interface CallBack {
     void resetCust();
 
     void callTransactivity(int billid);
+
+    void callManangerMode();
 }

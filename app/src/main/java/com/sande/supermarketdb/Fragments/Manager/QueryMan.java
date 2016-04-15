@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sande.supermarketdb.Database.Database;
+import com.sande.supermarketdb.ManagerCallBack;
 import com.sande.supermarketdb.R;
 
 /**
@@ -32,7 +33,7 @@ public class QueryMan extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mContext=getContext();
-        View mView= inflater.inflate(R.layout.fragment_stock_man, container, false);
+        View mView= inflater.inflate(R.layout.fragment_query_man, container, false);
         final EditText mQuery=(EditText)mView.findViewById(R.id.query_et_fqm);
         Button mButton=(Button)mView.findViewById(R.id.submit_btn_fqm);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +47,7 @@ public class QueryMan extends Fragment {
                     mQuery.setText("");
                     Toast.makeText(mContext, "Successful", Toast.LENGTH_SHORT).show();
                 }
+                ((ManagerCallBack)mContext).resetFrag(new QueryMan());
             }
         });
         return mView;

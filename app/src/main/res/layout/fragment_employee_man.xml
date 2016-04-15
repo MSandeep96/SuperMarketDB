@@ -5,12 +5,12 @@
     android:orientation="vertical"
     tools:context="com.sande.supermarketdb.Fragments.Manager.EmployeeMan">
 
-    <EditText
+    <TextView
         android:hint="EmployeeID"
+        android:textSize="20sp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:id="@+id/empId_et_fem" />
     <EditText
         android:hint="EmployeeName"
@@ -19,6 +19,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/empName_et_fem" />
     <EditText
+        android:hint="Password"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pass_et_fem" />
+    <EditText
         android:hint="Sex:(M or F)"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
@@ -26,7 +32,7 @@
         android:maxLength="1"
         android:id="@+id/sex_et_fem" />
     <EditText
-        android:hint="Quantity"
+        android:hint="Salary"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLength="8"
+        android:inputType="numberDecimal"
         android:id="@+id/job_type_et_fem" />
     <Button
         android:id="@+id/submit_btn_fem"

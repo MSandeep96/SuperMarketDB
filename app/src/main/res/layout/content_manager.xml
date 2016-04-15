@@ -9,7 +9,8 @@
     tools:context="com.sande.supermarketdb.Activities.ManagerActivity"
     tools:showIn="@layout/activity_manager">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,48 +19,36 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/supplier_button"
-            android:layout_below="@+id/query_button"
             android:layout_marginStart="24dp"
-            android:text="Stock" />
-
-        <Button
-            android:id="@+id/query_button"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Query" />
+            android:text="Stock"
+            android:onClick="onStockPressed"/>
 
         <Button
             android:id="@+id/employee_button"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/query_button"
-            android:layout_toEndOf="@+id/query_button"
-            android:text="Employee" />
-
-        <Button
-            android:id="@+id/customer_button"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Customer"
-            android:layout_alignTop="@+id/query_button"
-            android:layout_toStartOf="@+id/query_button" />
+            android:text="Employee"
+            android:onClick="onEmployeePressed"/>
 
         <Button
             android:id="@+id/supplier_button"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/employee_button"
-            android:layout_below="@+id/query_button"
-            android:layout_marginEnd="54dp"
-            android:text="Supplier" />
-    </RelativeLayout>
+            android:text="Supplier"
+            android:onClick="onSupplierPressed"/>
+
+        <Button
+            android:id="@+id/query_button"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Query"
+            android:onClick="onQueryPressed"/>
+    </LinearLayout>
     <FrameLayout
+        android:id="@+id/fl_contentManager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

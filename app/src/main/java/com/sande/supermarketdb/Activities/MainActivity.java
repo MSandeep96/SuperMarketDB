@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import com.sande.supermarketdb.CallBack;
 import com.sande.supermarketdb.DialogFrag.AddCustomerItem;
 import com.sande.supermarketdb.DialogFrag.AddStockItem;
+import com.sande.supermarketdb.DialogFrag.GoToManagerMode;
 import com.sande.supermarketdb.Fragments.*;
 import com.sande.supermarketdb.Pojo.New_bill_item;
 import com.sande.supermarketdb.R;
@@ -112,12 +113,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.manager_mode) {
+            GoToManagerMode gtmm=new GoToManagerMode();
+            gtmm.show(getSupportFragmentManager(),"gotomanager");
             return true;
         }else if(id==R.id.action_logout){
             UtilsClass.setIsLoggedIn(this,false);
             Intent inte=new Intent(this,LoginActivity.class);
             startActivity(inte);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -177,5 +181,11 @@ public class MainActivity extends AppCompatActivity
         Intent inte=new Intent(this,TransactsActivity.class);
         inte.putExtra("billid",billid);
         startActivityForResult(inte,124);
+    }
+
+    @Override
+    public void callManangerMode() {
+        Intent inte=new Intent(this,ManagerActivity.class);
+        startActivityForResult(inte,134);
     }
 }
