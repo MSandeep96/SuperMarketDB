@@ -5,31 +5,31 @@
         <item
             android:id="@+id/nav_new_bill"
             android:checked="true"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/cart"
             android:title="New Bill" />
         <item
             android:id="@+id/nav_stock"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/stock"
             android:title="Stock" />
         <item
             android:id="@+id/nav_employee"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/employee"
             android:title="Employee" />
         <item
             android:id="@+id/nav_customer"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/customer"
             android:title="Customer" />
         <item
             android:id="@+id/nav_supplier"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/suppl"
             android:title="Supplier" />
         <item
             android:id="@+id/nav_bills"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/bills"
             android:title="Bills" />
         <item
             android:id="@+id/nav_managers"
-            android:icon="@drawable/ic_expand_more_black_18dp"
+            android:icon="@drawable/manag"
             android:title="Managers"/>
     </group>
 

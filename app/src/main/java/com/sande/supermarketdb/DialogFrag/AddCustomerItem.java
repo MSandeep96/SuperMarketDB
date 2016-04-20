@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class AddCustomerItem extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView=inflater.inflate(R.layout.add_customer_dialog,container,false);
+        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         TextView mCustomeId=(TextView)mView.findViewById(R.id.customer_id_acd);
         mCustomeId.setText(String.valueOf(latestCid));
         final EditText mEditT1=(EditText)mView.findViewById(R.id.customerName_et_acd);
@@ -52,8 +54,12 @@ public class AddCustomerItem extends DialogFragment {
                 }else {
                     CustomerDB cust=new CustomerDB(latestCid,mEditT1.getText().toString(),mEditT2.getText().toString(),mEditT3.getText().toString());
                     ((CallBack)mContext).resetCust();
-                    db.insertIntoCustomer(cust);
-                    dismiss();
+                    try {
+                        db.insertIntoCustomer(cust);
+                        dismiss();
+                    }catch (Exception e){
+                        Toast.makeText(mContext, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

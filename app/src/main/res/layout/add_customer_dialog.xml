@@ -39,6 +39,7 @@
         android:id="@+id/customerNumber_et_acd"
         android:hint="Contact Number"
         android:maxLength="10"
+        android:inputType="number"
         android:layout_marginTop="29dp"
         android:layout_below="@+id/customerName_et_acd"
         android:layout_alignStart="@+id/customerName_et_acd"

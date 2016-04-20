@@ -4,29 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/login_back"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.sande.supermarketdb.Activities.LoginActivity"
     tools:showIn="@layout/activity_login">
 
     <EditText
         android:id="@+id/user_et_login"
+        style="@style/Base.Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Username"
         android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite" />
+
     <EditText
         android:id="@+id/pass_et_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite" />
 
     <Button
         android:id="@+id/log_btn_login"
-        android:text="Login"
-        android:onClick="loginInit"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:onClick="loginInit"
+        android:text="Login" />
 
 </LinearLayout>

@@ -26,6 +26,7 @@ import com.sande.supermarketdb.DatabaseClasses.BillsDB;
 import com.sande.supermarketdb.DatabaseClasses.CustomerDB;
 import com.sande.supermarketdb.Pojo.New_bill_item;
 import com.sande.supermarketdb.R;
+import com.sande.supermarketdb.Utils.ProjectCons;
 import com.sande.supermarketdb.Utils.UtilsClass;
 
 import java.text.SimpleDateFormat;
@@ -155,6 +156,7 @@ public class New_Bill extends Fragment {
             db.updateStock(bill_items);
             db.insertIntoTranscats(billId,bill_items);
             ((CallBack)mContext).resetFrag();
+            ProjectCons.mProd=new ArrayList<>();
         }
         return true;
     }

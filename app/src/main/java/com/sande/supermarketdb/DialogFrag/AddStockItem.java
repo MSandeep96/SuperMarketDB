@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import com.sande.supermarketdb.Database.Database;
 import com.sande.supermarketdb.DatabaseClasses.StockDB;
 import com.sande.supermarketdb.Pojo.New_bill_item;
 import com.sande.supermarketdb.R;
+import com.sande.supermarketdb.Utils.ProjectCons;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.util.ArrayList;
@@ -52,6 +54,7 @@ public class AddStockItem extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView=inflater.inflate(R.layout.add_stock_item,container,false);
+        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         final Spinner mSpinner=(Spinner) mView.findViewById(R.id.spinner_asi);
         final TextView mAval=(TextView)mView.findViewById(R.id.avlquan_tv_asi);
         final EditText mQuan=(EditText)mView.findViewById(R.id.quan_et_asi);
@@ -99,14 +102,19 @@ public class AddStockItem extends DialogFragment {
                     Toast.makeText(mContext,"Can't be greater than available quan!",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                int prodId=items.get(selected).ProductId;
-                int leftQuan=items.get(selected).Quantity-Quan;
-                double item_price=items.get(selected).Sale_Price*Quan;
-                double prof_this=items.get(selected).Sale_Price*Quan-items.get(selected).Cost_Price*Quan;
-                String prod_name=items.get(selected).Product_Name;
-                New_bill_item nbi=new New_bill_item(prodId,Quan,item_price,prof_this,prod_name,leftQuan);
-                callBack.onAddItem(nbi);
-                dismiss();
+                if(ProjectCons.mProd.contains(selected)){
+                    Toast.makeText(mContext, "Item already added", Toast.LENGTH_SHORT).show();
+                }else {
+                    int prodId = items.get(selected).ProductId;
+                    int leftQuan = items.get(selected).Quantity - Quan;
+                    double item_price = items.get(selected).Sale_Price * Quan;
+                    double prof_this = items.get(selected).Sale_Price * Quan - items.get(selected).Cost_Price * Quan;
+                    String prod_name = items.get(selected).Product_Name;
+                    New_bill_item nbi = new New_bill_item(prodId, Quan, item_price, prof_this, prod_name, leftQuan);
+                    callBack.onAddItem(nbi);
+                    ProjectCons.mProd.add(selected);
+                    dismiss();
+                }
             }
         });
         return mView;

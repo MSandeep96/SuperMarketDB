@@ -10,8 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.sande.supermarketdb.Database.Database;
 import com.sande.supermarketdb.DatabaseClasses.EmployeeDB;
 import com.sande.supermarketdb.R;

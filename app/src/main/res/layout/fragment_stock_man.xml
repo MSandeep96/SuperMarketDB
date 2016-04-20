@@ -45,12 +45,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/category_fsm" />
-    <EditText
-        android:hint="ID of Supplier"
+    <Spinner
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:id="@+id/supplied_by_fsm" />
     <Button
         android:text="Submit"

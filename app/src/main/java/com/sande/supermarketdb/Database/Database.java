@@ -50,7 +50,7 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface {
             "Salary REAL not null," +
             "JobType text not null," +
             "check (JobType in ('FullTime','PartTime'))," +
-            "check (Sex in ('M','F')" +
+            "check (Sex in ('M','F'))" +
             ")";
 
     private static final String CREATE_CUSTOMER = "create table customer(" +
@@ -81,7 +81,7 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface {
             "PID integer not null," +
             "Pquan integer not null," +
             "foreign key (BID) references bill(BID) on delete cascade on update cascade," +
-            "foreign key (PID) references stock(ProductId) on delete cascade on update cascade," +
+            "foreign key (PID) references stock(ProductId) on update cascade," +
             "primary key(BID,PID)" +
             ")";
 
@@ -397,5 +397,41 @@ public class Database extends SQLiteOpenHelper implements DatabaseInterface {
         }
         cursor.close();
         return allManagers;
+    }
+
+    public String getStringResult(String sql) {
+        StringBuilder mStr=new StringBuilder();
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            String tableNames="";
+            for(int k=0;k<cursor.getColumnCount();k++){
+                tableNames+=cursor.getColumnName(k)+" || ";
+            }
+            tableNames+="\n\n";
+            mStr.append(tableNames);
+            do {
+                String row="**";
+                for(int i=0;i<cursor.getColumnCount();i++){
+                    row+=cursor.getString(i)+" || ";
+                }
+                row+="**\n";
+                mStr.append(row);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return mStr.toString();
+    }
+
+    public String getProductName(String pid) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        String query="SELECT "+STOCK_PRODUCT_NAME+" FROM "+TABLE_STOCK+" WHERE "+STOCK_PRODUCTID+" = "+pid;
+        String prodName=null;
+        Cursor mCursor=db.rawQuery(query,null);
+        if(mCursor.moveToFirst()){
+            prodName=mCursor.getString(0);
+        }
+        mCursor.close();
+        return prodName;
     }
 }
